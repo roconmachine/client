@@ -1,0 +1,150 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+button {
+  width: fit-content;
+  min-width: 100px;
+  height: 45px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 2.5px solid #E0E1E4;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+  background-color: #F2F2F2;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.container
+{
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.left-column, .right-column {
+   width: 48%;
+   margin-right: 10px;
+}
+.group{
+   display: inline-grid
+}
+.section {
+   margin-bottom: 10px;
+   border: 1px solid #ccc;
+   padding: 10px;
+   border-radius: 5px;
+}
+.radio {
+   display: inline-flex;
+}
+.form-group {
+   display: flex; /* Use flexbox layout */
+   align-items: center; /* Center align items */
+}
+.form-group label {
+   margin-right: 20px; /* Space between radio button options */
+}
+label {
+   display: block;
+   margin-bottom: 5px;
+}
+
+.input-group {
+   display: flex;
+   align-items: center;
+   width: 100%;
+}
+
+.input-prefix {
+   background-color: #f0f0f0; /* Light background for contrast */
+   padding: 8px; /* Padding for the prefix */
+   border: 1px solid #ccc; /* Border for the prefix */
+   border-right: none; /* Remove right border to connect with input */
+   border-radius: 4px 0 0 4px; /* Rounded corners for left side */
+}
+
+
+
+
+.line-input {
+border: none; /* Remove the border */
+border-bottom: 2px solid #333; /* Only a bottom line */
+outline: none; /* Remove the focus outline */
+width: 100%; /* Make it full width */
+padding: 5px; /* Add some vertical space */
+font-size: 16px; /* Set font size */
+background: transparent; /* Make background transparent */
+}
+.line-input:focus {
+border-bottom: 2px solid #007bff; /* Change color on focus */
+}
+
+
+.button-container {
+display: flex;          /* Use flexbox for layout */
+justify-content: center; /* Aligns children to the center of the flex container */
+margin: 20px;          /* Adds some margin around the container */
+}
+
+
+/* From Uiverse.io by satyamchaudharydev */
+.form {
+--width-of-input: 200px;
+--border-height: 1px;
+--border-before-color: rgba(221, 221, 221, 0.39);
+--border-after-color: #5891ff;
+--input-hovered-color: #4985e01f;
+position: relative;
+width: var(--width-of-input);
+}
+/* styling of Input */
+.input {
+color: #fff;
+font-size: 0.9rem;
+background-color: transparent;
+width: 100%;
+box-sizing: border-box;
+padding-inline: 0.5em;
+padding-block: 0.7em;
+border: none;
+border-bottom: var(--border-height) solid var(--border-before-color);
+}
+/* styling of animated border */
+.input-border {
+position: absolute;
+background: var(--border-after-color);
+width: 0%;
+height: 2px;
+bottom: 0;
+left: 0;
+transition: 0.3s;
+}
+/* Hover on Input */
+input:hover {
+    background: var(--input-hovered-color);
+}
+
+input:focus {
+    outline: none;
+}
+/* here is code of animated border */
+input:focus ~ .input-border {
+    width: 100%;
+}
+/* === if you want to do animated border on typing === */
+/* remove input:focus code and uncomment below code */
+/* input:valid ~ .input-border{
+width: 100%;
+} */
