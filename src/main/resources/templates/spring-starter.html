@@ -14,89 +14,120 @@
 </head>
 <body>
 
+
     <form>
-        <div class="container">
+        <div class="form-container">
             <div class="left-column">
                 <!-- Project Section Title -->
                 <div class="group" >
                     <p><strong>Project</strong></p>
-                    <div class="section">
-                        <div class="form-group">
-                            <label><input type="radio" name="project" value="project1"> Project 1</label>
-                            <label><input type="radio" name="project" value="project2"> Project 2</label>
+                    <div>
+                        <div class="radio-inputs">
+                            <label class="radio">
+                                <input type="radio" name="radio" checked="" />
+                                <span class="name">Maven</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="radio" checked="" />
+                                <span class="name">Gredle</span>
+                            </label>
                         </div>
                     </div>
                 </div>
 
+
                 <!-- Language Section Title -->
                 <div class="group">
                     <p><strong>Language</strong></p>
-                    <div class="section">
-                        <div class="form-group">
-                            <label><input type="radio" name="language" value="java"> Java</label>
-                            <label><input type="radio" name="language" value="kotlin"> Kotlin</label>
-                        </div>
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">Java</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">Kotlin</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">Python</span>
+                        </label>
                     </div>
                 </div>
 
                 <!-- Spring Boot Section Title -->
                 <div class="group">
                     <p><strong>Spring Boot</strong></p>
-                    <div class="section">
-                        <div class="form-group">
-                            <label><input type="radio" name="springBoot" value="yes"> Yes</label>
-                            <label><input type="radio" name="springBoot" value="no"> No</label>
-                        </div>
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">V3,2.9</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">V3,3.9</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">V3,4.9</span>
+                        </label>
                     </div>
                 </div>
 
                 <!-- Packaging Section Title -->
                 <div class="group">
                     <p><strong>Packaging</strong></p>
-                    <div class="section">
-                        <div class="form-group">
-                            <label><input type="radio" name="packaging" value="jar"> JAR</label>
-                            <label><input type="radio" name="packaging" value="war"> WAR</label>
-                        </div>
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">Jar</span>
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">War</span>
+                        </label>
                     </div>
                 </div>
                 <!-- Java Version Section Title -->
                 <div class="group">
                     <p><strong>Java Version</strong></p>
-                    <div class="section">
-                        <div class="form-group">
-                            <label><input type="radio" name="javaVersion" value="8"> Java 8</label>
-                            <label><input type="radio" name="javaVersion" value="11"> Java 11</label>
-                            <label><input type="radio" name="javaVersion" value="17"> Java 17</label>
-                        </div>
+                    <div class="radio-inputs">
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">17</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="radio" checked="" />
+                            <span class="name">23</span>
+                        </label>
                     </div>
                 </div>
                 <!-- Project Metadata Section -->
                 <p style="text-align: left;"><strong>Project Metadata</strong></p>
 
-                <div class="section">
 
-                </div>
 
-                <div class="section" style="text-align: right;">
-                    <div class="form">
-                        <input class="input" placeholder="Type your text" required="" type="text">
-                        <span class="input-border"></span>
+                <div  style="text-align: right;">
+                    <div class="form-group">
+                        <label for="group" class="left-column">Group</label>
+                        <input id="group" required="" type="text" class="line-input">
+
                     </div>
                     <div class="form-group">
-                        <label for="artifact">Artifact</label>
-                        <input type="text" id="artifact" name="artifact" required>
+                        <label for="artifact" class="left-column">Artifact</label>
+                        <input type="text" id="artifact" name="artifact" required class="line-input">
                     </div>
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="name" class="left-column"s>Name</label>
+                        <input type="text" id="name" name="name" required class="line-input">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text" id="description" name="description">
+                        <label for="description" class="left-column">Description</label>
+                        <input type="text" id="description" name="description" class="line-input">
                     </div>
                     <div class="form-group">
-                        <label for="packageName">Package Name</label>
+                        <label for="packageName" class="left-column">Package Name</label>
                         <input type="text" id="packageName" name="packageName" required class="line-input">
                     </div>
                 </div>
@@ -105,24 +136,14 @@
             </div>
 
             <div class="right-column">
-                <!-- Dropdown Section -->
-                <div class="form-group">
-                    <label for="options">Select an option</label>
-                    <select id="options" name="options" required>
-                        <option value="">-- Please choose an option --</option>
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                    </select>
-                </div>
-
                 <!-- File Upload Section -->
                 <div class="form-group">
                     <label for="fileUpload">Upload File</label>
                     <input type="file" id="fileUpload" name="fileUpload">
                 </div>
             </div>
-        </div>
 
+        </div>
         <!-- Action Buttons -->
         <div class="button-container">
             <button type="submit">Generate</button>

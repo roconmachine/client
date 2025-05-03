@@ -27,12 +27,6 @@ button:active {
   transform: scale(0.95);
 }
 
-.container
-{
-    padding: 50px;
-    display: flex;
-    justify-content: space-between;
-}
 .left-column, .right-column {
    width: 48%;
    margin-right: 10px;
@@ -46,9 +40,7 @@ button:active {
    padding: 10px;
    border-radius: 5px;
 }
-.radio {
-   display: inline-flex;
-}
+
 .form-group {
    display: flex; /* Use flexbox layout */
    align-items: center; /* Center align items */
@@ -67,84 +59,143 @@ label {
    width: 100%;
 }
 
-.input-prefix {
-   background-color: #f0f0f0; /* Light background for contrast */
-   padding: 8px; /* Padding for the prefix */
-   border: 1px solid #ccc; /* Border for the prefix */
-   border-right: none; /* Remove right border to connect with input */
-   border-radius: 4px 0 0 4px; /* Rounded corners for left side */
+
+.line-input{
+    border: none; /* Remove the border */
+    border-bottom: 2px solid #333; /* Only a bottom line */
+    outline: none; /* Remove the focus outline */
+    width: 100%; /* Make it full width */
+    padding: 5px; /* Add some vertical space */
+    font-size: 16px; /* Set font size */
+    background: transparent; /* Make background transparent */
 }
 
-
-
-
-.line-input {
-border: none; /* Remove the border */
-border-bottom: 2px solid #333; /* Only a bottom line */
-outline: none; /* Remove the focus outline */
-width: 100%; /* Make it full width */
-padding: 5px; /* Add some vertical space */
-font-size: 16px; /* Set font size */
-background: transparent; /* Make background transparent */
-}
 .line-input:focus {
 border-bottom: 2px solid #007bff; /* Change color on focus */
 }
 
 
 .button-container {
-display: flex;          /* Use flexbox for layout */
-justify-content: center; /* Aligns children to the center of the flex container */
-margin: 20px;          /* Adds some margin around the container */
+    display: flex;          /* Use flexbox for layout */
+    justify-content: center; /* Aligns children to the center of the flex container */
+    margin: 20px;          /* Adds some margin around the container */
 }
 
 
-/* From Uiverse.io by satyamchaudharydev */
-.form {
---width-of-input: 200px;
---border-height: 1px;
---border-before-color: rgba(221, 221, 221, 0.39);
---border-after-color: #5891ff;
---input-hovered-color: #4985e01f;
-position: relative;
-width: var(--width-of-input);
-}
-/* styling of Input */
-.input {
-color: #fff;
-font-size: 0.9rem;
-background-color: transparent;
-width: 100%;
-box-sizing: border-box;
-padding-inline: 0.5em;
-padding-block: 0.7em;
-border: none;
-border-bottom: var(--border-height) solid var(--border-before-color);
-}
-/* styling of animated border */
-.input-border {
-position: absolute;
-background: var(--border-after-color);
-width: 0%;
-height: 2px;
-bottom: 0;
-left: 0;
-transition: 0.3s;
-}
-/* Hover on Input */
-input:hover {
-    background: var(--input-hovered-color);
+
+/*radio input*/
+.radio-inputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  background-color: #eee;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  width: 300px;
+  font-size: 14px;
 }
 
-input:focus {
-    outline: none;
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
 }
-/* here is code of animated border */
-input:focus ~ .input-border {
-    width: 100%;
+
+.radio-inputs .radio input {
+  display: none;
 }
-/* === if you want to do animated border on typing === */
-/* remove input:focus code and uncomment below code */
-/* input:valid ~ .input-border{
-width: 100%;
-} */
+
+.radio-inputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 0;
+  color: rgba(51, 65, 85, 1);
+  transition: all 0.15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: #fff;
+  font-weight: 600;
+}
+
+/* Hover effect */
+.radio-inputs .radio:hover .name {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Animation */
+.radio-inputs .radio input:checked + .name {
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: select 0.3s ease;
+}
+
+@keyframes select {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Particles */
+.radio-inputs .radio input:checked + .name::before,
+.radio-inputs .radio input:checked + .name::after {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #3b82f6;
+  opacity: 0;
+  animation: particles 0.5s ease forwards;
+}
+
+.radio-inputs .radio input:checked + .name::before {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.radio-inputs .radio input:checked + .name::after {
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes particles {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(var(--direction));
+  }
+}
+
+.radio-inputs .radio input:checked + .name::before {
+  --direction: -10px;
+}
+
+.radio-inputs .radio input:checked + .name::after {
+  --direction: 10px;
+}
+
+
+.form-container {
+    display: inline-flex
+
+}
