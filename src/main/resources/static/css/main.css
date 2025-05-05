@@ -2,31 +2,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
-
-button {
-  width: fit-content;
-  min-width: 100px;
-  height: 45px;
-  padding: 8px;
-  border-radius: 5px;
-  border: 2.5px solid #E0E1E4;
-  box-shadow: 0px 0px 20px -20px;
-  cursor: pointer;
-  background-color: white;
-  transition: all 0.2s ease-in-out 0ms;
-  user-select: none;
-  font-family: 'Poppins', sans-serif;
-}
-
-button:hover {
-  background-color: #F2F2F2;
-  box-shadow: 0px 0px 20px -18px;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
 .left-column, .right-column {
    width: 48%;
    margin-right: 10px;
@@ -198,4 +173,44 @@ border-bottom: 2px solid #007bff; /* Change color on focus */
 .form-container {
     display: inline-flex
 
+}
+
+
+.container-btn-file {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #093b20;
+  color: #fff;
+  border-style: none;
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 4px 8px 10px -3px rgba(0, 0, 0, 0.356);
+  transition: all 250ms;
+}
+.container-btn-file input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.container-btn-file > svg {
+  margin-right: 1em;
+}
+.container-btn-file::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0;
+  border-radius: 0.5em;
+  background-color: #469b61;
+  z-index: -1;
+  transition: all 350ms;
+}
+.container-btn-file:hover::before {
+  width: 100%;
 }

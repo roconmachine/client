@@ -7,3 +7,13 @@
             $(this).css('border-bottom-color', '#333'); // Revert line color
         });
     });
+
+
+
+function notImplemented(node){
+    alert("This feature is not yet implemented. We will implement soon.");
+}
+
+function packageUpdate(){
+    $("#packageName").val($("#group").val() + "."+  $("#artifact").val());
+}
