@@ -6,11 +6,17 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,13 +29,14 @@ import java.util.Map;
  * app state params
  */
 
-/// TODO : invoke methods require optimization
+
 
 @Component
 public abstract class BaseController<T extends AppRequest> {
     private static final String MODEL_ATTR_NAME = "model";
     protected String targetView = "test";
     protected boolean redirect = false;
+    private HttpServletRequest request;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -41,30 +48,40 @@ public abstract class BaseController<T extends AppRequest> {
     public String get(Model model,
                       HttpSession session,
                       @RequestParam Map<String, String> queryParams,
-                      @PathVariable Map<String, String> pathVars
-    ) {
+                      @PathVariable Map<String, String> pathVars) {
 
         this.invokeContribute(model,session, Method.GET);
         this.invokeContributeForController(model,session, Method.GET);
         model.addAttribute(MODEL_ATTR_NAME, handleGet(session, queryParams, pathVars));
         queryParams.forEach(model::addAttribute);
         pathVars.forEach(model::addAttribute);
+        Map<String, Object> additionalAttributes = attach();
+        if (additionalAttributes != null)
+            additionalAttributes.forEach(model::addAttribute);
         return (redirect) ? "redirect:" + targetView : targetView;
     }
 
     @PostMapping
-    public String post(HttpServletRequest request,
+    public String post(HttpServletRequest _request,
                        @ModelAttribute(MODEL_ATTR_NAME) T domain,
                        HttpSession session,
                        @RequestHeader Map<String, String> headers,
                        Model model,
-                       @RequestParam Map<String, String> params) {
+                       @RequestParam Map<String, String> params) throws IOException {
+        request = _request;
         if(domain != null) domain.getParameters().putAll(headers);
         this.invokeContribute(model,session, Method.POST);
         this.invokeContributeForController(model,session, Method.POST);
 
         String nextMapping = handlePost(domain, session, model);
         return nextMapping != null && !nextMapping.isEmpty() ? nextMapping : targetView;
+    }
+
+    protected List<MultipartFile> getMultipart(String byName){
+        if (request instanceof MultipartHttpServletRequest multipartRequest) {
+            return multipartRequest.getFiles(byName);
+        }
+        return null;
     }
 
     private void invokeContribute(Model model, HttpSession session, Method method) {
@@ -112,7 +129,7 @@ public abstract class BaseController<T extends AppRequest> {
     /*
         Method triggers when post request processed
      */
-    protected abstract String handlePost(T domain,HttpSession session, Model model);
+    protected abstract String handlePost(T domain,HttpSession session, Model model) throws IOException;
     /*
         Method triggers when get request processed
      */

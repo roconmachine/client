@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,58 +15,52 @@
 <body>
 
 
-    <form>
+    <form method="post" th:action="@{/service}" enctype="multipart/form-data" th:object="${model}">
         <div class="form-container">
             <div class="left-column">
                 <!-- Project Section Title -->
-                <div class="group" >
-                    <p><strong>Project</strong></p>
-                    <div>
-                        <div class="radio-inputs">
-                            <label class="radio">
-                                <input type="radio" name="build" checked />
-                                <span class="name">Maven</span>
-                            </label>
-                            <label class="radio" onclick="notImplemented(this)">
-                                <input type="radio" name="build" disabled/>
-                                <span class="name">Gredle</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="group" >-->
+<!--                    <p><strong>Project</strong></p>-->
+<!--                    <div>-->
+<!--                        <div class="radio-inputs">-->
+<!--                            <label class="radio">-->
+<!--                                <input type="radio" name="build" checked />-->
+<!--                                <span class="name">Maven</span>-->
+<!--                            </label>-->
+<!--                            <label class="radio" onclick="notImplemented(this)">-->
+<!--                                <input type="radio" name="build" disabled/>-->
+<!--                                <span class="name">Gredle</span>-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
                 <!-- Language Section Title -->
-                <div class="group">
-                    <p><strong>Language</strong></p>
-                    <div class="radio-inputs">
-                        <label class="radio">
-                            <input type="radio" name="lang" checked />
-                            <span class="name">Java</span>
-                        </label>
-                        <label class="radio" onclick="notImplemented(this)">
-                            <input type="radio" name="lang"  disabled/>
-                            <span class="name">Python</span>
-                        </label>
-                    </div>
-                </div>
+<!--                <div class="group">-->
+<!--                    <p><strong>Language</strong></p>-->
+<!--                    <div class="radio-inputs">-->
+<!--                        <label class="radio">-->
+<!--                            <input type="radio" name="lang" checked />-->
+<!--                            <span class="name">Java</span>-->
+<!--                        </label>-->
+<!--                        <label class="radio" onclick="notImplemented(this)">-->
+<!--                            <input type="radio" name="lang"  disabled/>-->
+<!--                            <span class="name">Python</span>-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <!-- Spring Boot Section Title -->
                 <div class="group">
                     <p><strong>Spring Boot</strong></p>
                     <div class="radio-inputs">
-                        <label class="radio">
-                            <input type="radio" name="version" checked="" />
-                            <span class="name">V3,2.9</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="version" checked="" />
-                            <span class="name">V3,3.9</span>
-                        </label>
-                        <label class="radio">
-                            <input type="radio" name="version" checked="" />
-                            <span class="name">V3,4.9</span>
-                        </label>
+                        <th:block th:each="ver : ${versions}">
+                            <label class="radio">
+                                <input type="radio" th:field="*{version}" th:value="${ver}" />
+                                <span class="name">V3,2.9</span>
+                            </label>
+                        </th:block>
                     </div>
                 </div>
 
@@ -75,12 +69,12 @@
                     <p><strong>Packaging</strong></p>
                     <div class="radio-inputs">
                         <label class="radio">
-                            <input type="radio" name="package" checked="" />
+                            <input type="radio" th:field="*{packaging}" value="Jar" />
                             <span class="name">Jar</span>
                         </label>
 
                         <label class="radio">
-                            <input type="radio" name="package" checked="" />
+                            <input type="radio" th:field="*{packaging}" value="War" />
                             <span class="name">War</span>
                         </label>
                     </div>
@@ -140,7 +134,11 @@
                     <label>Open API Specification(OAS)</label>
                     <button class="container-btn-file">
                         &#128194;  Upload
-                        <input class="file" name="text" type="file" />
+                        <input class="file" name="files" type="file" />
+                    </button>
+                    <button class="container-btn-file">
+                        &#128194;  Upload
+                        <input class="file" name="files" type="file" />
                     </button>
                 </div>
             </div>
